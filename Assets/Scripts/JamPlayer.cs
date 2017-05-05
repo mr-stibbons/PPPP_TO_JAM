@@ -64,7 +64,12 @@ public class JamPlayer : CaptainsMessPlayer {
 				RedScore = 0;
 			}
 		}
+	}
 
+	public void Update()
+	{
+		RedScoreField.text = RedScore.ToString ();
+		BlueScoreField.text = BlueScoreField.ToString ();
 	}
 
 }

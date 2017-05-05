@@ -15,7 +15,7 @@ public class Crisis : MonoBehaviour {
 	public double winnerRewards() { return winReward/winners.Count; }
 	public double loserRewards() { return winReward/winners.Count; }
 
-	public void Resolve(List<JamPlayer> players){
+	public bool Resolve(List<JamPlayer> players){
 		for (int i = 0; i < players.Count; ++i) {
 			if (players [i].role == role) {
 				winFaction = players [i].faction;
@@ -35,6 +35,7 @@ public class Crisis : MonoBehaviour {
 		for (int i = 0; i < losers.Count; ++i) {
 			players [i].CmdRewards (false, !winFaction, loserRewards ());
 		}
+		return winFaction;
 	}
 }
 
