@@ -13,5 +13,5 @@ public class JamListener : CaptainsMessListener {
 	};
 	public NetworkState networkState = NetworkState.Init;
 
-
+	public JamGameSession gameSession;
 }

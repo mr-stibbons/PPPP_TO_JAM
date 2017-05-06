@@ -22,7 +22,7 @@ public class JamPlayer : CaptainsMessPlayer {
 	[SyncVar]
 	public Roles role;
 	[SyncVar]
-	public bool faction;
+	public Factions faction;
 	[SyncVar]
 	public bool traitor;
 	public Color PlayerColor;
@@ -39,10 +39,10 @@ public class JamPlayer : CaptainsMessPlayer {
 	}
 
 	[Command]
-	public void CmdRewards(bool Success, bool Faction, double points){
+	public void CmdRewards(bool Success, Factions faction, double points){
 		if (Success)
 			Successes += 1;
-		if (Faction) {
+		if (faction == Factions.Reds) {
 			RedScore += points;
 		} else {
 			BlueScore += points;
@@ -50,7 +50,11 @@ public class JamPlayer : CaptainsMessPlayer {
 	}
 
 	public void ChoseSide(bool side){
-		faction = side;
+		if (side) {
+			faction = Factions.Reds;
+		} else {
+			faction = Factions.Blues;
+		}
 	}
 
 	public void TurnCoat(bool faction){
@@ -68,8 +72,8 @@ public class JamPlayer : CaptainsMessPlayer {
 
 	public void Update()
 	{
-		RedScoreField.text = RedScore.ToString ();
-		BlueScoreField.text = BlueScoreField.ToString ();
+		//RedScoreField.text = RedScore.ToString ();
+		//BlueScoreField.text = BlueScoreField.ToString ();
 	}
 
 }
