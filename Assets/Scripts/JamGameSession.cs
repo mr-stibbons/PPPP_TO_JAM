@@ -11,6 +11,7 @@ public enum JamGameState{
 	Countdown,
 	Setup,
 	Crisis,
+	Waiting,
 	Rewards,
 	GameOver
 }
@@ -24,6 +25,8 @@ public class JamGameSession : NetworkBehaviour {
 	JamListener networkListener;
 	[SyncVar]
 	public JamGameState gameState;
+
+	public int waitTime;
 
 	public void OnDestroy()
 	{
@@ -59,9 +62,9 @@ public class JamGameSession : NetworkBehaviour {
 		List<Crisis> GameCrisis = factory.MakeCrisis (players);
 
 		foreach (Crisis crisis in GameCrisis) {
-
-			bool winner = crisis.Resolve(players);	
-			if (winner) {
+			FactionSelect ();
+			Factions winner = crisis.Resolve(players);	
+			if (winner == Factions.Reds) {
 				RedWins++;
 			}else{
 				BlueWins++;
@@ -70,6 +73,20 @@ public class JamGameSession : NetworkBehaviour {
 
 		 FinalScoring (RedWins > BlueWins);
 		
+	}
+
+	[Server]
+	IEnumerator FactionSelect(){
+		foreach (JamPlayer players in players) {
+			players.faction = Factions.None; 
+		}
+
+		while (players.Any(p => p.faction == Factions.None)){
+			gameState = JamGameState.Waiting;
+			yield return new WaitForSeconds(waitTime);
+			//need crash protection
+		}
+			
 	}
 
 	[Server]
