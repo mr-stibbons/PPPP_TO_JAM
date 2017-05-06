@@ -60,9 +60,11 @@
      <Compile Include="Assets\CaptainsMess\Example\ExamplePlayerScript.cs" />
      <Compile Include="Assets\Scripts\Crisis.cs" />
      <Compile Include="Assets\Scripts\CrisisFactory.cs" />
+     <Compile Include="Assets\Scripts\Factions.cs" />
      <Compile Include="Assets\Scripts\JamGameSession.cs" />
      <Compile Include="Assets\Scripts\JamListener.cs" />
      <Compile Include="Assets\Scripts\JamPlayer.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\Roles.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -1,2 +1,7 @@
 Library/*
 Temp/*
+*.csproject
+*.meta
+*.sln
+*.userprefs
+.DS_Store
